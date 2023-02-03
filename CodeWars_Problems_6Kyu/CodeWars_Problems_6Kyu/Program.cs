@@ -19,17 +19,61 @@
 //int x = Factorial(4);
 //Console.WriteLine(x);
 
-
+//-----------------------------------------------------------------------------------------------------------------------------
 
 //Simple Fun #52: Pair Of Shoes
 
-//int[][] shoes =
+using System;
+
+int[][] shoes =
+    {
+    new int[] { 0, 21 },
+    new int[] { 1, 23 },
+    new int[] { 1, 21 },
+    new int[] { 0, 23 }
+    };
+
+int x = shoes.GetLength(0);
+int y = shoes.GetLength(1);
+
+Console.WriteLine(x);
+Console.WriteLine(y);
+
+//int g = 0;
+//int h = 0;
+//int i = 0;
+////Checks all horizontal
+//for (g = 0; g < x; g++) // g tells us which array we are in (vertical)
+//{
+//    for (h = 0; h < x; h++) // h tells us which position in array #h we are looking at
 //    {
-//    new int[] { 0, 21 },
-//    new int[] { 1, 23 },
-//    new int[] { 1, 21 },
-//    new int[] { 0, 23 }
-//    };
+//        for (i = h + 1; i < x; i++) // i is used for comparison purposes
+//        {
+//            if (board[g][h] == board[g][i])
+//            {
+//                Console.WriteLine("Duplicate");
+//                finalResult = false;
+//            }
+//        }
+
+//    }
+//}
+
+//// checks all vertical
+//for (g = 0; g < x; g++) // g tells us which array we are in (vertical)
+//{
+//    for (h = 0; h < x; h++) // h tells us which position in array #h we are looking at
+//    {
+//        for (i = h + 1; i < x; i++) // i is used for comparison purposes
+//        {
+//            if (board[h][g] == board[i][g])
+//            {
+//                Console.WriteLine("Duplicate");
+//                finalResult = false;
+//            }
+//        }
+//    }
+//}
 
 //-----------------------------------------------------------------------------------------------------------------------------
 
@@ -80,7 +124,7 @@
 //    else if (s.Length % 2 == 1) return -1;                                // Line 2
 //    else if (s.Contains("()")) return solve(s.Replace("()", ""));         // Line 3
 //    return (s.Substring(0, 2) == ")(" ? 2 : 1) + solve(s.Substring(2));   // Line 4
-    
+
 //         *** Below is the general flow of what is happening above: ***
 //      A string is read in.
 //      If the string is empty or null, line 1 code will be implemented and return o. Done.
@@ -132,11 +176,12 @@
 
 //bool finalResult = true;
 
-//for (g = 0; g < x; g++) // Check for zeros
+// Check for any zeros in 2D array
+//for (g = 0; g < x; g++) // g tells us which row we are in
 //{
-//    for (h = 0; h < x; h++)
+//    for (h = 0; h < x; h++) // h tells us which column we are in
 //    {
-//        finalResult = (board[g][h] == 0) ? false : true;
+//        finalResult = (board[g][h] == 0) ? false : true; // if element at row g, column h is zero, return false. Otherwise, return true.
 //        if (finalResult == false)
 //        {
 //            Console.WriteLine(finalResult);
@@ -145,14 +190,14 @@
 //    }
 //}
 
-// Checks all horizontal
-//for (g = 0; g < x; g++) // h tells us which array we are in (vertical)
+// Checks every row for duplicate numbers
+//for (g = 0; g < x; g++) // g tells us which row we are in (NOTE: same row for both elements being compared)
 //{
-//    for (h = 0; h < x; h++) // i tells us which position in array #h we are looking at
+//    for (h = 0; h < x; h++) // h tells us which column we are in
 //    {
-//        for (i = h + 1; i < x; i++) // j is used for comparison purposes
+//        for (i = h + 1; i < x; i++) // i is used to alter column position (by difference of i) from original column position h
 //        {
-//            if (board[g][h] == board[g][i])
+//            if (board[g][h] == board[g][i]) // holding row constant, checking for duplicates within the row
 //            {
 //                Console.WriteLine("Duplicate");
 //                finalResult = false;
@@ -162,14 +207,14 @@
 //    }
 //}
 
-//// checks all vertical
-//for (g = 0; g < x; g++) // h tells us which array we are in (vertical)
+//// checks every column for duplicate numbers
+//for (g = 0; g < x; g++) // g tells us which column we are in (NOTE: same column for both elements being compared)
 //{
-//    for (h = 0; h < x; h++) // i tells us which position in array #h we are looking at
+//    for (h = 0; h < x; h++) // h tells us which row we are in
 //    {
-//        for (i = h + 1; i < x; i++) // j is used for comparison purposes
+//        for (i = h + 1; i < x; i++) // i is used to alter row position (by difference of i) from original row position h
 //        {
-//            if (board[h][g] == board[i][g])
+//            if (board[h][g] == board[i][g]) // holding column constant, checking for duplicates within the column
 //            {
 //                Console.WriteLine("Duplicate");
 //                finalResult = false;
@@ -180,21 +225,22 @@
 
 // check's each sub-cube of 9
 
-//for (int f = 0; f < y; f++)
+//for (int f = 0; f < y; f++) // f is used as a counter to go through each of the 9 sub-squares of 3 x 3
 //{
-//    for (g = 0; g < y; g++) // h tells us which array we are in (vertical)
+//    for (g = 0; g < y; g++) // g tells us column of 1st element.
 //    {
-//        for (h = 0; h < y; h++)
+//        for (h = 0; h < y; h++) // h tells us column of 1st element.
 //        {
-//            for (i = 0; i < y; i++) // i tells us which position in array #h we are looking at
+//            for (i = 0; i < y; i++) // i tells us row of 2nd element.
 //            {
-//                for (j = i + 1; j < y; j++) // j is used for comparison purposes
+//                for (j = i + 1; j < y; j++) // j tells us column of 2nd element.
 //                {
-//                    if (g == i && h == j)
+//                    if (g == i && h == j) // case where you are comparing same element against itself - obvi want to ignore
 //                    {
 //                        continue;
 //                    }
 //                    else if (board[g + (3*f)][h + (3*f)] == board[i + (3*f)][j + (3*f)])
+// code above checks each position in sub 3x3 square against other elements in 3x3 square to see if duplicates exist
 //                    {
 //                          Console.WriteLine("Duplicate");
 //                        finalResult = false;
