@@ -24,6 +24,111 @@
 //Simple Fun #52: Pair Of Shoes
 
 using System;
+using System.Diagnostics.Metrics;
+using System.Globalization;
+
+/*                                      ****IMPORTANT: Note on jagged array vs. 2D array****
+                                   First, a jagged array and a 2D array are NOT the same thing
+                                   
+                                   Jagged array: https://www.programiz.com/csharp-programming/jagged-array
+                                                int[][] shoes =
+                                                {
+                                                new int[] { 0, 21 },
+                                                new int[] { 1, 23 },
+                                                new int[] { 1, 21 },
+                                                new int[] { 0, 23 }
+                                                };
+
+                                   2D array: https://www.programiz.com/csharp-programming/multidimensional-arrays
+                                                int[ , ] x = { { 1, 2 ,3}, { 3, 4, 5 } }; // 2 Rows x 3 colmumns
+
+                                   IS THIS TRUE??????????? (see links above)
+                                   Technically speaking, both the jaggard array and 2d array have only one column. 
+                                   Within each element of that column, however, another array exists.
+
+                                   If it is true, then why does .getLength(1) should work for both but it doesn't...
+
+                                   **Where these two differ though, is when you want to get the width (i.e. # of columns) of the jagged/2D array.**
+
+                                   for jagged...
+
+                                     
+                                     // assume there is a jagged array called "jaggedArray" defined and initialized
+
+                                     for (int i = 0; i < jaggedArray.Length; i++) 
+                                     {
+                                            for (int j = 0; j < jaggedArray[i].Length; j++) 
+                                            {
+                                                Console.Write(jaggedArray[i][j] + " ");
+                                            }
+                                     }
+                                    
+                                     IMPORTANT: Notice the ".Length" 
+
+                                   for 2D...
+                                    // assume there is a 2D array called "numbers" defined and initialized
+
+                                    for(int i = 0; i < numbers.GetLength(0); i++)  { 
+                                            Console.Write("Row "+ i+": ");
+
+                                    for(int j = 0; j < numbers.GetLength(1); j++)  { 
+                                            Console.Write(numbers[i, j]+" ");
+
+                                    IMPORTANT: Notice the ".GetLength"
+                                
+                                    TAKEAWAY: jagged arrays use just ".Length" while 2D (multi-dimensional) arrays use ".GetLength"
+
+                                    The .Length property returns the number of elements in an array... 
+                                    whether it be one dimensional or multidimensional. 
+                                    (ex. 2x6 array = 12.;   5 x 2 x 3 array = 30)
+
+                                    The .GetLength(0) method returns number of rows in a multidimensional array (i.e. y axis)
+                                    (ex. for a 5x2x3 array, that is  5.)
+
+                                    The .GetLength(1) method returns number of columns in a multidimensional array (i.e. x axis)
+                                    (ex. for a 5x2x3 array, that is 2.)
+
+                                    The .GetLength(2) method returns number of elements within each sub-array (i.e. y axis)
+                                    (ex. for a 5x2x3 array, that is 3.)
+
+                                    The pattern holds for more dimensions as well. 
+
+                                    See full exmaple below:
+                                
+                                            int[,,] threeDimArray = new int[2, 3, 4]
+                                            {
+                                                { { 1, 2, 3, 4}, { 5, 6, 7, 8}, { 9, 10, 11, 12}},
+                                                { { 13, 14, 15, 16}, {17, 18, 19, 20 }, {21, 22, 23, 24 } }
+                                            };
+
+                                            int x = threeDimArray.Length;
+                                            int y = threeDimArray.GetLength(0);
+                                            int z = threeDimArray.GetLength(1);
+                                            int w = threeDimArray.GetLength(2);
+
+                                            Console.WriteLine($"Should be 24: {x}"); //total number of elements = x*y*z
+                                            Console.WriteLine($"Should be 2: {y}"); //total number of rows (y axis)
+                                            Console.WriteLine($"Should be 3: {z}"); //total number of columns (x axis)
+                                            Console.WriteLine($"Should be 4: {w}"); //total number of elements in each sub array (z axis)
+
+*/
+
+                                            //int[][] twoDimJaggedArray = 
+                                            //{
+                                            //    new int[] { 0, 21 },
+                                            //    new int[] { 1, 23 },
+                                            //    new int[] { 1, 21 },
+                                            //    new int[] { 0, 23 }
+                                            //};
+
+                                            //int x = twoDimJaggedArray.Length;
+                                            //int y = twoDimJaggedArray.GetLength(0);
+                                            //int z = twoDimJaggedArray.GetLength(1);
+
+                                            //Console.WriteLine($"Should be 8: {x}"); //total number of elements = x*y*z
+                                            //Console.WriteLine($"Should be 4: {y}"); //total number of rows (y axis)
+                                            //Console.WriteLine($"Should be 2: {z}"); //total number of columns (x axis)
+
 
 int[][] shoes =
     {
@@ -33,11 +138,16 @@ int[][] shoes =
     new int[] { 0, 23 }
     };
 
-int x = shoes.GetLength(0);
-int y = shoes.GetLength(1);
+int counter = 0;
 
-Console.WriteLine(x);
-Console.WriteLine(y);
+for (int i = 0; i < 1; i++)
+{
+    for (int j =0; j < shoes[i].Length; j++)
+    {
+        counter++;
+    }
+}
+
 
 //int g = 0;
 //int h = 0;
