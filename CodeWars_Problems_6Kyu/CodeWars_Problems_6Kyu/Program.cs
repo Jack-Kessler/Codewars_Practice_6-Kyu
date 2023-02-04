@@ -1,4 +1,62 @@
-﻿// Learning Recurssion
+﻿//Break camelCase (6-Kyu) (Completed 2/4/2023 - 13th day since start of bootcamp)
+//string str = "camelCasingTest";
+//string newStr = "";
+//int placeCounter = -1;
+
+//for (int i = 0; i < str.Length; i++)
+//{
+//    newStr = char.IsUpper(str[i]) == true ? newStr + ' ' + str[i] : newStr + str[i];
+//}
+
+//Console.WriteLine(newStr);
+// return newStr;
+
+
+//-----------------------------------------------------------------------------------------------------------------------------
+
+//Create Phone Number (6-Kyu) (Completed 2/3/2023 - 13th day since start of bootcamp)
+
+//int[] phoneNumber = { 1,2,3,4,5,6,7,8,9,0};
+
+//string finalPhoneNumber = "("; // initializes string with ( already in place
+//int counter = 1; // used to track place in phone number excluding non digits. Note that foreach starts at 1 (not 0). Therefore, we match here.
+
+//foreach (int i in phoneNumber)
+//{
+//    if (i < 0 || i > 9) // checking to make sure each element in array is digit 0 -9
+//    {
+//        Console.WriteLine("Error. There was a digit outside of acceptable range: 0 -9.");
+//        finalPhoneNumber = "Error";
+//        break;
+//    }
+//    else if (counter == 4) // need to add ')'  after third digit per instructions. Code below also adds 4th digit after.
+//    {
+//        finalPhoneNumber = finalPhoneNumber + ") " + i.ToString();
+//        counter++;
+//    }
+//    else if (counter ==7) // need to add '-'  after 6th digit per instructions. Code below also adds 7th digit after.
+//    {
+//        finalPhoneNumber = finalPhoneNumber + "-" + i.ToString();
+//        counter++;
+//    }
+//    else // all other digits not special cases above.
+//    {
+//        finalPhoneNumber = finalPhoneNumber + i.ToString();
+//        counter++;
+//    }
+//}
+
+//Console.WriteLine(finalPhoneNumber);
+
+//return finalPhoneNumber;
+
+
+
+
+//-----------------------------------------------------------------------------------------------------------------------------
+
+
+// Learning Recurssion
 
 //int Factorial(int number)
 //{
@@ -21,7 +79,7 @@
 
 //-----------------------------------------------------------------------------------------------------------------------------
 
-//Simple Fun #52: Pair Of Shoes (completed 2/3/2023 - 10th day of bootcamp)
+//Simple Fun #52: Pair Of Shoes (completed 2/3/2023 - 12th day since start of bootcamp)
 
 //using System;
 //using System.Diagnostics.Metrics;
@@ -288,7 +346,7 @@
 
 //-----------------------------------------------------------------------------------------------------------------------------
 
-//Simple Reversed Parenthesis (6-Kyu) (Completed 2/3/2023 - 10th Day of Bootcamp)
+//Simple Reversed Parenthesis (6-Kyu) (Completed 2/3/2023 - 12th Day since of Bootcamp)
 
 //string s = "())(((";
 //int counter = 0;
@@ -362,7 +420,7 @@
 
 //-----------------------------------------------------------------------------------------------------------------------------
 
-//Sudoku board validator (6-Kyu) (Completed 2/2/2023 - 9th day of bootcamp)
+//Sudoku board validator (6-Kyu) (Completed 2/2/2023 - 11th day since start of bootcamp)
 //using System.Collections.Concurrent;
 //using System.Reflection.Metadata.Ecma335;
 
