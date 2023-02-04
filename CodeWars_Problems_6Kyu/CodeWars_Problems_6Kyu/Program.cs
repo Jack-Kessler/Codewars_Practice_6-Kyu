@@ -21,11 +21,12 @@
 
 //-----------------------------------------------------------------------------------------------------------------------------
 
-//Simple Fun #52: Pair Of Shoes
+//Simple Fun #52: Pair Of Shoes (completed 2/3/2023 - 10th day of bootcamp)
 
-using System;
-using System.Diagnostics.Metrics;
-using System.Globalization;
+//using System;
+//using System.Diagnostics.Metrics;
+//using System.Globalization;
+//using System.Transactions;
 
 /*                                      ****IMPORTANT: Note on jagged array vs. 2D array****
                                    First, a jagged array and a 2D array are NOT the same thing
@@ -113,81 +114,181 @@ using System.Globalization;
 
 */
 
-                                            //int[][] twoDimJaggedArray = 
-                                            //{
-                                            //    new int[] { 0, 21 },
-                                            //    new int[] { 1, 23 },
-                                            //    new int[] { 1, 21 },
-                                            //    new int[] { 0, 23 }
-                                            //};
+//**** Example below for two dimensional Jagged Array ****
 
-                                            //int x = twoDimJaggedArray.Length;
-                                            //int y = twoDimJaggedArray.GetLength(0);
-                                            //int z = twoDimJaggedArray.GetLength(1);
+//int[][] twoDimJaggedArray = 
+//{
+//    new int[] { 0, 21 },
+//    new int[] { 1, 23 },
+//    new int[] { 1, 21 },
+//    new int[] { 0, 23 }
+//};
 
-                                            //Console.WriteLine($"Should be 8: {x}"); //total number of elements = x*y*z
-                                            //Console.WriteLine($"Should be 4: {y}"); //total number of rows (y axis)
-                                            //Console.WriteLine($"Should be 2: {z}"); //total number of columns (x axis)
+//int x = twoDimJaggedArray.Length;
+//int y = twoDimJaggedArray.GetLength(0);
+//int z = twoDimJaggedArray.GetLength(1);
 
+//Console.WriteLine($"Should be 8: {x}"); //total number of elements = x*y*z
+//Console.WriteLine($"Should be 4: {y}"); //total number of rows (y axis)
+//Console.WriteLine($"Should be 2: {z}"); //total number of columns (x axis)
 
-int[][] shoes =
-    {
-    new int[] { 0, 21 },
-    new int[] { 1, 23 },
-    new int[] { 1, 21 },
-    new int[] { 0, 23 }
-    };
+//**** End of example ****
 
-int counter = 0;
+//Instructions:
+//Min. number of rows = shoes.Length = 2
+//Max. number of rows = shoes.Length = 50
+//Min size of a possible shoe (element position [i][1]) is 1
+//Max size of a possible shoe (element position [i][1]) is 100
 
-for (int i = 0; i < 1; i++)
-{
-    for (int j =0; j < shoes[i].Length; j++)
-    {
-        counter++;
-    }
-}
-
+//int[][] shoes =
+//    {
+//    new int[] { 0, 21 },
+//    new int[] { 1, 23 },
+//    new int[] { 1, 21 },
+//    new int[] { 0, 23 },
+//    new int[] { 1, 22 },
+//    new int[] { 1, 22 },
+//    };
 
 //int g = 0;
 //int h = 0;
 //int i = 0;
-////Checks all horizontal
-//for (g = 0; g < x; g++) // g tells us which array we are in (vertical)
-//{
-//    for (h = 0; h < x; h++) // h tells us which position in array #h we are looking at
-//    {
-//        for (i = h + 1; i < x; i++) // i is used for comparison purposes
-//        {
-//            if (board[g][h] == board[g][i])
-//            {
-//                Console.WriteLine("Duplicate");
-//                finalResult = false;
-//            }
-//        }
+//int counter = 0;
+//int checkTrue = 0;
+//int one = 0;
+//int zero = 0;
+//bool result = false;
 
+
+//for (i = 0; i < shoes.Length; i++) //calculating how many right and left shoes there are
+//{
+//    if (shoes[i][0] == 0)
+//    {
+//        zero++;
+//    }
+//    else
+//    {
+//        one++;
 //    }
 //}
 
-//// checks all vertical
-//for (g = 0; g < x; g++) // g tells us which array we are in (vertical)
+//if (zero != one) //checking to see if there are the same number of right and left shoes. If not, impossible.
 //{
-//    for (h = 0; h < x; h++) // h tells us which position in array #h we are looking at
+//    Console.WriteLine("false");
+//}
+
+
+//for (g = 0; g < shoes.Length; g++) // shoes.Length is # of rows in shoes.
+//{
+//    counter = g;
+//    for (i = 0; i < shoes.Length; i++)
 //    {
-//        for (i = h + 1; i < x; i++) // i is used for comparison purposes
+//        if (shoes[i][0] == 101)
 //        {
-//            if (board[h][g] == board[i][g])
+//            checkTrue++;
+//            if (checkTrue == shoes.Length)
 //            {
-//                Console.WriteLine("Duplicate");
-//                finalResult = false;
+//                Console.WriteLine("True");
+//                result = true;
 //            }
+//        }
+//        else
+//        {
+//            checkTrue = 0; //need to reset to 0 every time so next time through loop is valid (since start at element 0).
+//            break;
+//        }
+//    }
+//    if (shoes[g][0] == 101) // possible that some shoes already found a match with another shoe checked earlier in process
+//    {
+//        continue;
+//    }
+//    else //shoes that haven't found a match yet will fall into this case.
+//    {
+//        for (h = g+1; h < shoes.Length; h++) // h always starts at g+1. This avoids going over shoes that were already checked.
+//        {
+//            if (shoes[g][1] == shoes[h][1]) // Checking for shoe size match
+//            {
+//                if (shoes[g][0] == 1 && shoes[h][0] == 0 || shoes[g][0] == 0 && shoes[h][0] == 1) // checking if one left, one right
+//                {                       //if one of the above is true, this means that there was a match.
+//                    shoes[g][0] = 101; //need to reset both elements to 101 in each shoe so  we can ignore moving forward
+//                    shoes[g][1] = 101; //had to do this way since I could not find how to remove the array (i.e. row) entirely
+//                    shoes[h][0] = 101;
+//                    shoes[h][1] = 101;
+//                    break;              //Breaks back to original "for (g=0..)" statement
+//                }
+//             counter++; //shoe size matched but two of the same foot shoe
+//            }
+//            else
+//            {
+//                counter++; //shoe size did not match
+//            }
+
+//        }
+//        if (counter == shoes.Length - 1) //this condition will only be true if there is a shoe with no match.
+//        {
+//            Console.WriteLine("false");
 //        }
 //    }
 //}
+
+//return result;
 
 //-----------------------------------------------------------------------------------------------------------------------------
 
-//Simple Reversed Parenthesis (6-Kyu)
+//Example below of where break goes until
+
+//int counter = 0;
+//int k = 0;
+//int h = 0;
+
+//for (int g = 0; g < 3; g++) // for statement 1
+//{
+//    if (k == 10) // if statement 1
+//    {
+//        Console.WriteLine("If statement 1");
+//    }
+//    else
+//    {
+//        for (h = 0; h < 4; h++) // for statement 2
+//        {
+//            if (k == 10) // if statement 2
+//            {
+//                Console.WriteLine("If statement 2");
+//            }
+//            else
+//            {
+//                if (g == h) // if statement 3
+//                {
+//                    Console.WriteLine($"g: {g} is equal to h: {h}");
+//                }
+//                else if (g != h)
+//                {
+//                    if (g <= h) // if statement 4
+//                    {
+//                        Console.WriteLine("Break will happen: what is after?");
+//                        break;
+//                    }
+//                    Console.WriteLine("Only broke out of if loop break was in");
+//                    counter++;
+//                }
+//                else
+//                {
+//                    Console.WriteLine("Should never run this else statement");
+//                    counter++;
+//                }
+//            }
+//            Console.WriteLine("broke out of inner most if and second if but not closest for loop");
+//        }
+//        Console.WriteLine("broke out of inner most if, second if, and closest for loop, but NOT out of outside most if");
+//    }
+//    Console.WriteLine("broke out to outer most for loop");
+//}
+
+
+
+//-----------------------------------------------------------------------------------------------------------------------------
+
+//Simple Reversed Parenthesis (6-Kyu) (Completed 2/3/2023 - 10th Day of Bootcamp)
 
 //string s = "())(((";
 //int counter = 0;
@@ -260,7 +361,8 @@ for (int i = 0; i < 1; i++)
 //}
 
 //-----------------------------------------------------------------------------------------------------------------------------
-//Sudoku board validator (6-Kyu)
+
+//Sudoku board validator (6-Kyu) (Completed 2/2/2023 - 9th day of bootcamp)
 //using System.Collections.Concurrent;
 //using System.Reflection.Metadata.Ecma335;
 
